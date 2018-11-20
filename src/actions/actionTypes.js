@@ -1,0 +1,2 @@
+export const GET_USERNAME = 'GET_USERNAME'
+export const ATTEMPT_LOGIN = 'ATTEMPT_LOGIN'
