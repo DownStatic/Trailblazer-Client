@@ -2,15 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import NavBar from './components/NavBar'
+import Signup from './containers/Signup'
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './reducers/rootReducer';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-ReactDOM.render(<Provider store={store}>
-    <App />
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <React.Fragment>
+        <Route path='/' component={NavBar} />
+        <Route exact path='/App' component={App} />
+        <Route exact path='/Signup' component={Signup} />
+      </React.Fragment>
+    </Router>
   </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
