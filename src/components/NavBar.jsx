@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import '../assets/scss/NavBar.scss'
+import LinkBar from './LinkBar'
 
-export default class NavBar extends PureComponent {
+class NavBar extends PureComponent {
 
   state = {
     expanded: false
@@ -17,10 +19,17 @@ export default class NavBar extends PureComponent {
     return(
       <React.Fragment>
         <div className="navbar" onClick={this.expandLinkbar}>
+          {this.props.avatar_url ? <img className="avatar" src={this.props.avatar_url} alt="avatar" /> : null }
         </div>
-        {this.state.expanded ? <p>Expanded!</p> : <p>Not expanded</p>}
+        {this.state.expanded ? <LinkBar className="expanded" /> : <LinkBar className="collapsed" />}
       </React.Fragment>
     )
   }
 
 }
+
+const mapStateToProps = state => {
+  return { avatar_url: state.avatar_url, logged_in: state.logged_in }
+}
+
+export default connect(mapStateToProps)(NavBar)

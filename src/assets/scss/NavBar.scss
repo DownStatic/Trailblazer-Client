@@ -1,0 +1,25 @@
+.navbar {
+    height: 75px;
+    width: 75px;
+    margin-bottom: 2%;
+    position: fixed;
+    z-index: 1;
+    top: 0.5%;
+    left: 0.5%;
+    background-image: radial-gradient(#ad8fa3, #394768);
+    border: 1px black;
+    border-radius: 8px;
+    border-style: solid;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: .75s; /* 0.5 second transition effect to slide in the sidenav */
+    opacity: .8;
+    align-items: center;
+}
+
+.avatar {
+  max-width: 100%;
+  max-height: auto;
+  align-items: center;
+  display: block;
+  opacity: 1;
+}

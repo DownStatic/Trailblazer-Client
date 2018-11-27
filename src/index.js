@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import NavBar from './components/NavBar'
 import Signup from './containers/Signup'
+import TrailView from './containers/TrailView'
+import UserView from './containers/UserView'
+import SearchView from './containers/SearchView'
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -19,11 +22,11 @@ ReactDOM.render(
         <Route path='/' component={NavBar} />
         <Route exact path='/App' component={App} />
         <Route exact path='/Signup' component={Signup} />
+        <Route exact path='/Trail' component={TrailView} />
+        <Route exact path='/Profile' component={UserView} />
+        <Route exact path='/Search' component={SearchView} />
       </React.Fragment>
     </Router>
   </Provider>, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
