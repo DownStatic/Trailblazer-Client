@@ -11,3 +11,15 @@
   border-radius: 4px;
   border-style: solid;
 }
+
+.display-area {
+  position: fixed;
+  top: 8%;
+  right: 8%;
+  width: 30%;
+  height: 80%;
+  border: 2px black;
+  border-radius: 4px;
+  border-style: solid;
+  background: radial-gradient(goldenrod, deepskyblue)
+}

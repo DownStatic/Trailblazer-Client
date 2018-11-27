@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import '../assets/scss/SearchView.scss'
+import { Link } from 'react-router-dom'
 
 const trailKey = "200389058-ca4e48fd0274137a0e4e2693a51308cc"
 
@@ -49,7 +50,7 @@ export default class SearchView extends PureComponent {
           return(
             <div key={trail.id} className="trail-link">
               <img src={trail.imgSqSmall} alt="" />
-              <p>{trail.name}</p>
+              <Link to={`/Trail/${trail.id}`}><p>{trail.name}</p></Link>
             </div>
         )
         })}
