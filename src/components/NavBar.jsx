@@ -21,7 +21,7 @@ class NavBar extends PureComponent {
         <div className="navbar" onClick={this.expandLinkbar}>
           {this.props.logged_in ? <img className="avatar" src={this.props.user.avatar_url} alt="avatar" /> : null }
         </div>
-        {this.state.expanded ? <LinkBar className="expanded" /> : <LinkBar className="collapsed" />}
+        {this.state.expanded ? <LinkBar className="expanded" loggedIn={this.props.logged_in} /> : <LinkBar className="collapsed" loggedIn={this.props.logged_in} />}
       </React.Fragment>
     )
   }

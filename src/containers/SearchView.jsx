@@ -21,7 +21,7 @@ export default class SearchView extends PureComponent {
   }
 
   searchTrails = () => {
-    let target = `https://www.hikingproject.com/data/get-trails?lat=${this.state.latitude}&lon=${this.state.longitude}&maxDistance=10&key=${trailKey}`
+    let target = `https://www.hikingproject.com/data/get-trails?lat=${this.state.latitude}&lon=${this.state.longitude}&maxDistance=${this.state.range}&key=${trailKey}`
     fetch(target).then(res=>res.json()).then(trails=>this.setState({trails:trails.trails, searching: false}))
   }
 

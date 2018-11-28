@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import '../assets/scss/Login.scss'
 
 class Login extends PureComponent {
@@ -10,6 +11,11 @@ class Login extends PureComponent {
   }
 
   render(){
+
+    if(this.props.logged_in){
+      return (<Redirect to='/Profile' />) 
+    }
+
     return(
       <div className="login-form">
         <input type="text" name="username" placeholder="username" onChange={this.handleChange}></input><br></br>
@@ -42,7 +48,7 @@ class Login extends PureComponent {
 
 
 const mapStateToProps = state => {
-  return { username: state.username, password: state.password, logged_in: state.logged_in }
+  return { logged_in: state.logged_in }
 }
 
 export default connect(mapStateToProps)(Login)
