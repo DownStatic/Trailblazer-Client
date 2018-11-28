@@ -1,7 +1,7 @@
 .map-container{
   position: fixed;
   top: 8%;
-  left: 8%;
+  left: 5%;
   width: 50%;
   height: 80%;
   overflow: hidden;
@@ -15,11 +15,32 @@
 .display-area {
   position: fixed;
   top: 8%;
-  right: 8%;
-  width: 30%;
+  right: 5%;
+  width: 39%;
   height: 80%;
   border: 2px black;
   border-radius: 4px;
   border-style: solid;
-  background: radial-gradient(goldenrod, deepskyblue)
+  background: radial-gradient(goldenrod, deepskyblue);
+  overflow: scroll;
+}
+
+.display-nav {
+  position: absolute;
+  width: 100%;
+  bottom: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.proto-landmark {
+  width: 80%;
+  margin: 10%;
+}
+
+.landmark-image {
+  width: 80%;
+  height: auto;
+  margin: 10%;
 }

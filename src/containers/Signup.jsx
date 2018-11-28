@@ -63,7 +63,7 @@ export default class Signup extends PureComponent {
         <div className="avatar_portion">
           <label>Avatar</label>
           <input onChange={this.avatarUpload} name="avatar" id="avatar_file" type="file" accept="image/*"></input><br></br>
-          <img src={this.state.avatar ? this.state.avatar : "https://is3-ssl.mzstatic.com/image/thumb/Purple91/v4/f6/9f/62/f69f62cc-ccf2-cc72-b7f2-5ba8233d9ed9/source/256x256bb.jpg"} alt="questionable" />
+          <img src={this.state.avatar ? this.state.avatar : "https://i.imgur.com/B4Unr42.png"} alt="questionable" />
         </div>
         <div className="user_details">
           <label>Username</label><br></br>

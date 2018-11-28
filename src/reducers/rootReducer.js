@@ -34,8 +34,20 @@ const avatar_url = (state=initialState.avatar_url, action) => {
   }
 }
 
+const user_id = (state=initialState.user_id, action) => {
+  switch(action.type){
+    case "SUCCESSFUL_LOGIN":
+      return action.user_id
+    case "SUCCESSFUL_LOGOUT":
+      return 0
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   username,
   avatar_url,
+  user_id,
   logged_in
 })

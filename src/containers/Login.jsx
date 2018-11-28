@@ -33,7 +33,7 @@ class Login extends PureComponent {
       console.log(autheduser);
       if(autheduser.length === 1){
         autheduser = autheduser[0]
-        this.props.dispatch({type: "SUCCESSFUL_LOGIN", username: autheduser.name, avatar_url: autheduser.avatar_url})
+        this.props.dispatch({type: "SUCCESSFUL_LOGIN", username: autheduser.name, avatar_url: autheduser.avatar_url, user_id: autheduser.id})
       }
     })
   }
