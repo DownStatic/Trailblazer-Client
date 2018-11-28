@@ -127,7 +127,6 @@ export class TrailView extends PureComponent {
       this.setState(currentState => {
         let newcomments = currentState.comments
         newcomments.push(comment)
-        console.log(newcomments)
         return {
           comments: newcomments,
           display: "comments"
@@ -209,7 +208,7 @@ export class TrailView extends PureComponent {
 }
 
 const mapStateToProps = state => {
-  return {user_id: state.user_id}
+  return {user_id: state.user.id}
 }
 
 export default GoogleApiWrapper({

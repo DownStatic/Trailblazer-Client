@@ -19,7 +19,7 @@ class NavBar extends PureComponent {
     return(
       <React.Fragment>
         <div className="navbar" onClick={this.expandLinkbar}>
-          {this.props.avatar_url ? <img className="avatar" src={this.props.avatar_url} alt="avatar" /> : null }
+          {this.props.logged_in ? <img className="avatar" src={this.props.user.avatar_url} alt="avatar" /> : null }
         </div>
         {this.state.expanded ? <LinkBar className="expanded" /> : <LinkBar className="collapsed" />}
       </React.Fragment>
@@ -29,7 +29,7 @@ class NavBar extends PureComponent {
 }
 
 const mapStateToProps = state => {
-  return { avatar_url: state.avatar_url, logged_in: state.logged_in }
+  return {  logged_in: state.logged_in, user: state.user }
 }
 
 export default connect(mapStateToProps)(NavBar)

@@ -36,7 +36,6 @@ export default class Signup extends PureComponent {
     let not_avatar = {...this.state}
     delete not_avatar["avatar"]
     form_upload.append("user", JSON.stringify(not_avatar))
-    console.log(not_avatar);
     fetch('http://localhost:3000/api/v1/users', {
       method: "POST",
       body: form_upload

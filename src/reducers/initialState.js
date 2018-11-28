@@ -1,4 +1,5 @@
 export default {
+  user: {},
   username: "redux_default",
   avatar_url: "",
   user_id: 0,
