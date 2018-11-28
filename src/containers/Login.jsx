@@ -13,7 +13,7 @@ class Login extends PureComponent {
   render(){
 
     if(this.props.logged_in){
-      return (<Redirect to='/Profile' />) 
+      return (<Redirect to='/Profile' />)
     }
 
     return(
@@ -32,14 +32,12 @@ class Login extends PureComponent {
   }
 
   attemptLogin = () => {
-    console.log("Attempting login...");
     let target = `http://localhost:3000/api/v1/users/`
     fetch(target).then(res => res.json()).then(allusers => {
       let autheduser = allusers.filter(u => u.name === this.state.username && u.password === this.state.password)
-      console.log(autheduser);
       if(autheduser.length === 1){
         autheduser = autheduser[0]
-        this.props.dispatch({type: "SUCCESSFUL_LOGIN", username: autheduser.name, avatar_url: autheduser.avatar_url, user_id: autheduser.id, user: autheduser})
+        this.props.dispatch({type: "SUCCESSFUL_LOGIN", user: autheduser})
       }
     })
   }

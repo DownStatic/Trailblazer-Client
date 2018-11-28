@@ -7,6 +7,7 @@ import Signup from './containers/Signup'
 import TrailView from './containers/TrailView'
 import UserView from './containers/UserView'
 import SearchView from './containers/SearchView'
+import LoggedOut from './components/LoggedOut'
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -25,6 +26,7 @@ ReactDOM.render(
         <Route exact path='/Trail/:id' component={TrailView} />
         <Route exact path='/Profile' component={UserView} />
         <Route exact path='/Search' component={SearchView} />
+        <Route exact path='/LoggedOut' component={LoggedOut} />
       </React.Fragment>
     </Router>
   </Provider>, document.getElementById('root'));

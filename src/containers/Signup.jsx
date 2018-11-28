@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import '../assets/scss/Signup.scss'
 
-export default class Signup extends PureComponent {
+export class Signup extends PureComponent {
 
   state = {
     name: "",
@@ -39,7 +41,9 @@ export default class Signup extends PureComponent {
     fetch('http://localhost:3000/api/v1/users', {
       method: "POST",
       body: form_upload
-    }).then(res => res.json()).then(json => console.log(json))
+    }).then(res => res.json()).then(newuser => {
+      this.props.dispatch({type: "SUCCESSFUL_LOGIN", user: newuser})
+    })
   }
 
   proficiencySelect = () => {
@@ -57,7 +61,12 @@ export default class Signup extends PureComponent {
   }
 
   render(){
+    if(this.props.logged_in){
+      return <Redirect to='/Profile' />
+    }
+
     return(
+
       <div className="user_creation">
         <div className="avatar_portion">
           <label>Avatar</label>
@@ -68,7 +77,7 @@ export default class Signup extends PureComponent {
           <label>Username</label><br></br>
           <input onChange={this.handleChange} name="name" type="text" placeholder="your username"></input><br></br>
           <label>Password</label><br></br>
-          <input onChange={this.handleChange} name="password" type="text" placeholder="your password"></input><br></br>
+          <input onChange={this.handleChange} name="password" type="password" placeholder="your password"></input><br></br>
           <label>Age</label><br></br>
           <input onChange={this.handleChange} name="age" type="number"></input><br></br>
           <label>Select Your Proficiency</label><br></br>
@@ -88,3 +97,9 @@ export default class Signup extends PureComponent {
   }
 
 }
+
+const mapStateToProps = state => {
+  return { logged_in: state.logged_in }
+}
+
+export default connect(mapStateToProps)(Signup)
