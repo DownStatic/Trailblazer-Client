@@ -1,8 +1,16 @@
 import React from 'react'
+import '../assets/scss/UserDetails.scss'
 
 const UserDetails = props => {
   return (
-    <p>The user details will go here.</p>
+    <React.Fragment>
+      <div className="user-details">
+
+      </div>
+      <div className="user-test">
+
+      </div>
+    </React.Fragment>
   )
 }
 

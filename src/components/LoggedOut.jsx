@@ -1,7 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import '../assets/scss/LoggedOut.scss'
 
-const LoggedOut = () => {
+const LoggedOut = (props) => {
+  props.dispatch({type: "SUCCESSFUL_LOGOUT"})
   return(
     <div className="logout">
       <div className="happy-trails-container">
@@ -11,4 +13,4 @@ const LoggedOut = () => {
   )
 }
 
-export default LoggedOut
+export default connect()(LoggedOut)

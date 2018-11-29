@@ -1,0 +1,27 @@
+.user-details {
+  overflow: scroll;
+  position: fixed;
+  top: 12%;
+  left: -webkit-calc(8% + 300px);
+  left:    -moz-calc(8% + 300px);
+  left:         calc(8% + 300px);
+  width: 34%;
+  height: 80%;
+  border: 1px black;
+  border-radius: 8px;
+  border-style: solid;
+}
+
+.user-test {
+  overflow: scroll;
+  position: fixed;
+  top: 12%;
+  left: -webkit-calc(47% + 300px);
+  left:    -moz-calc(47% + 300px);
+  left:         calc(47% + 300px);
+  width: 34%;
+  height: 80%;
+  border: 1px black;
+  border-radius: 8px;
+  border-style: solid;
+}

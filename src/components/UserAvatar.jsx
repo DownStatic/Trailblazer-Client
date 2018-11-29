@@ -1,8 +1,11 @@
 import React from 'react'
+import '../assets/scss/UserAvatar.scss'
 
 const UserAvatar = props => {
   return (
-    <p>The user avatar will go here.</p>
+    <div className="user-avatar-container">
+      <img className="profile-avatar" src={props.avatar} alt="user-avatar" />
+    </div>
   )
 }
 

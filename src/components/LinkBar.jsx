@@ -11,7 +11,7 @@ const LinkBar = (props) => {
         <Link to='/Login'>Login</Link>
         <Link to='/Search'>Search</Link>
         <Link to={props.loggedIn ? '/Profile' : '/Login'}>Profile</Link>
-        <Link to='/Signup'>Sign up</Link>
+        {props.loggedIn ? <Link to='/LoggedOut'>Log Out</Link> : <Link to='/Signup'>Sign up</Link>}
       </div>
     </div>
   )

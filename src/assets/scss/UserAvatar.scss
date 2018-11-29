@@ -1,0 +1,24 @@
+.user-avatar-container {
+  position: fixed;
+  top: 12%;
+  left: 3%;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border: 1px black;
+  border-radius: 8px;
+  border-style: solid;
+}
+
+.profile-avatar {
+  height: 100%;
+  max-width: auto;
+  display: block;
+  opacity: 1;
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+}

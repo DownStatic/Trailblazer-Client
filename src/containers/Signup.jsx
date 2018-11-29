@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react'
+import {GoogleApiWrapper} from 'google-maps-react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import '../assets/scss/Signup.scss'
+
+const geokey = "AIzaSyA6JCWe4O5FRl56_Y5nKuoqC_U1nNXWVvs"
 
 export class Signup extends PureComponent {
 
@@ -31,13 +34,14 @@ export class Signup extends PureComponent {
     }})
   }
 
-  handleSubmit = () => {
+  handleSubmit = (coords) => {
     let avatar = document.getElementById("avatar_file").files[0]
     let form_upload = new FormData()
     form_upload.append("avatar", avatar)
     let not_avatar = {...this.state}
     delete not_avatar["avatar"]
     form_upload.append("user", JSON.stringify(not_avatar))
+    form_upload.append("coords", JSON.stringify(coords))
     fetch('http://localhost:3000/api/v1/users', {
       method: "POST",
       body: form_upload
@@ -58,6 +62,16 @@ export class Signup extends PureComponent {
 
   avatarUpload = (event) => {
     this.setState({avatar: URL.createObjectURL(event.target.files[0])})
+  }
+
+  locate = () => {
+    let geocoder = new this.props.google.maps.Geocoder()
+    let { street_address, city, state, zip_code } = this.state.address
+    let address = [street_address,city,state].join(",")+zip_code
+    geocoder.geocode({address: address}, (response, status) => {
+      let coords = { lat: response[0].geometry.location.lat(),lng: response[0].geometry.location.lng()}
+      this.handleSubmit(coords)
+    })
   }
 
   render(){
@@ -90,7 +104,7 @@ export class Signup extends PureComponent {
           <input onChange={this.handleAddress} name="state" type="text"></input><br></br>
           <label>Zip Code</label><br></br>
           <input onChange={this.handleAddress} name="zip_code" type="number"></input><br></br>
-          <button onClick={this.handleSubmit}>Submit</button>
+          <button onClick={this.locate}>Submit</button><br></br>
         </div>
       </div>
     )
@@ -102,4 +116,6 @@ const mapStateToProps = state => {
   return { logged_in: state.logged_in }
 }
 
-export default connect(mapStateToProps)(Signup)
+export default GoogleApiWrapper({
+  apiKey: geokey
+})(connect(mapStateToProps)(Signup))

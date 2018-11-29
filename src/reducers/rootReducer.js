@@ -23,8 +23,18 @@ const user = (state=initialState.user, action) => {
   }
 }
 
+const recommendations = (state=initialState.recommendations, action) => {
+  switch(action.type){
+    case "SET_RECOMMENDATIONS":
+      return action.recommendations
+    default:
+      return state
+  }
+}
+
 
 export default combineReducers({
   user,
-  logged_in
+  logged_in,
+  recommendations
 })

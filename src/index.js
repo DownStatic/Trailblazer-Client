@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Login from './containers/Login';
 import NavBar from './components/NavBar'
 import Signup from './containers/Signup'
 import TrailView from './containers/TrailView'
@@ -21,7 +21,7 @@ ReactDOM.render(
     <Router>
       <React.Fragment>
         <Route path='/' component={NavBar} />
-        <Route exact path='/Login' component={App} />
+        <Route exact path='/Login' component={Login} />
         <Route exact path='/Signup' component={Signup} />
         <Route exact path='/Trail/:id' component={TrailView} />
         <Route exact path='/Profile' component={UserView} />
