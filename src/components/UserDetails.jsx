@@ -7,9 +7,6 @@ const UserDetails = props => {
       <div className="user-details">
 
       </div>
-      <div className="user-test">
-
-      </div>
     </React.Fragment>
   )
 }
