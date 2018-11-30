@@ -13,7 +13,7 @@ export class UserView extends PureComponent {
 
   getRecommendations = () => {
     let { lat,lng } = this.props.user.coords
-    fetch(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lng}&maxDistance=200&key=${trailkey}`).then(res=>res.json()).then(recs => this.props.dispatch({type: "SET_RECOMMENDATIONS", recommendations: recs.trails}))
+    fetch(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lng}&maxDistance=200&maxResults=20&key=${trailkey}`).then(res=>res.json()).then(recs => this.props.dispatch({type: "SET_RECOMMENDATIONS", recommendations: recs.trails}))
   }
 
   componentDidMount(){
@@ -27,7 +27,6 @@ export class UserView extends PureComponent {
       <div className="user-background">
       </div>
       <div className="user-container">
-        <p>This is the user view.</p>
         <UserAvatar avatar={this.props.user.avatar_url}/>
         <UserDetails user={this.props.user}/>
         <RecommendationBox />

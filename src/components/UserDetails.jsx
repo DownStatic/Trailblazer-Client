@@ -5,7 +5,7 @@ const UserDetails = props => {
   return (
     <React.Fragment>
       <div className="user-details">
-
+        {Object.keys(props.user).map(key => <p>{key}</p>)}
       </div>
     </React.Fragment>
   )

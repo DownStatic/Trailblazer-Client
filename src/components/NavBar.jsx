@@ -6,22 +6,18 @@ import LinkBar from './LinkBar'
 class NavBar extends PureComponent {
 
   state = {
-    expanded: false
+    expanded: true
   }
 
-  expandLinkbar = () => {
-    this.setState((currentstate) => {
-      return {expanded: !currentstate.expanded}
-    })
-  }
 
   render() {
     return(
       <React.Fragment>
-        <div className="navbar" onClick={this.expandLinkbar}>
+        <div className="navbar">
           {this.props.logged_in ? <img className="avatar" src={this.props.user.avatar_url} alt="avatar" /> : null }
         </div>
-        {this.state.expanded ? <LinkBar className="expanded" loggedIn={this.props.logged_in} /> : <LinkBar className="collapsed" loggedIn={this.props.logged_in} />}
+        <div className="linkback"></div>
+        <LinkBar className="expanded" loggedIn={this.props.logged_in} />}
       </React.Fragment>
     )
   }
