@@ -50,9 +50,20 @@ export default class SearchView extends PureComponent {
         <div className="display-field">
           {this.state.trails.map(trail=>{
             return(
-              <div key={trail.id} className="trail-link">
-                <img src={trail.imgSqSmall} alt="" />
-                <Link to={`/Trail/${trail.id}`}><p>{trail.name}</p></Link>
+              <div className="flex-child">
+                <div key={trail.id} className="movie_card">
+                  <div className="info_section">
+                    <div className="movie_header">
+                      <Link to={`/Trail/${trail.id}`}><h1>{trail.name}</h1></Link>
+                    </div>
+                    <div class="movie_desc">
+                      <p class="text">
+                        {trail.summary}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="blur_back bright_back" style={{backgroundImage:`url(${trail.imgMedium})`}}></div>
+                </div>
               </div>
           )
           })}

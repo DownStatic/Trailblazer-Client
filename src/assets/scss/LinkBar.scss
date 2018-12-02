@@ -2,11 +2,11 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 .expanded {
-    height: 40px; /* 100% Full-height */
+    height: 40px;
     width: 100%;
     position: fixed;
-    z-index: 1; /* Stay on top */
-    top: 0%; /* Stay at the top */
+    z-index: 1;
+    top: 0%; 
     left: 76px;
     background: none;
     overflow-x: hidden;
@@ -21,11 +21,11 @@
 }
 
 .linkback {
-  height: 40px; /* 100% Full-height */
+  height: 40px;
   width: 100%;
   position: fixed;
-  z-index: 1; /* Stay on top */
-  top: 0%; /* Stay at the top */
+  z-index: 1;
+  top: 0%;
   left: 76px;
   background-image: linear-gradient(gray, black);
   overflow-x: hidden;
