@@ -8,10 +8,11 @@ const LinkBar = (props) => {
   return (
     <div className={props.className}>
       <div className="linkcontainer">
-        <Link to='/Login'>Login</Link>
+        {props.loggedIn ? <Link to='/Login'>Switch User</Link> : <Link to='/Login'>Login</Link>}
         <Link to='/Search'>Search</Link>
         <Link to={props.loggedIn ? '/Profile' : '/Login'}>Profile</Link>
         {props.loggedIn ? <Link to='/LoggedOut'>Log Out</Link> : <Link to='/Signup'>Sign up</Link>}
+        <Link to='/About'>About</Link>
       </div>
     </div>
   )
