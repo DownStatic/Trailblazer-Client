@@ -3,10 +3,19 @@ import { connect } from 'react-redux'
 import '../assets/scss/NavBar.scss'
 import LinkBar from './LinkBar'
 
+const trailkey = "200389058-ca4e48fd0274137a0e4e2693a51308cc"
+
 class NavBar extends PureComponent {
 
   state = {
     expanded: true
+  }
+
+  getRecommendations = () => {
+    if(this.props.user.coords){
+      let { lat,lng } = this.props.user.coords
+      fetch(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lng}&maxDistance=200&maxResults=20&key=${trailkey}`).then(res=>res.json()).then(recs => this.props.dispatch({type: "SET_RECOMMENDATIONS", recommendations: recs.trails}))
+    }
   }
 
   componentDidMount(){
@@ -23,6 +32,7 @@ class NavBar extends PureComponent {
   }
 
   render() {
+    this.getRecommendations()
     return(
       <React.Fragment>
         <div className="navbar">

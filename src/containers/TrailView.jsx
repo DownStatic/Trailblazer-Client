@@ -21,7 +21,6 @@ export class TrailView extends PureComponent {
   }
 
   componentWillMount(){
-    console.log("component is mounting...");
     fetch(`https://www.hikingproject.com/data/get-trails-by-id?ids=${this.props.match.params.id}&key=${trailkey}`)
     .then(res => res.json())
     .then(trails => this.setState({trail: trails.trails[0]}))
@@ -184,6 +183,15 @@ export class TrailView extends PureComponent {
     }
   }
 
+  handleMapClick = (mapProps, map, clickEvent) => {
+    console.log(clickEvent.latLng.lat())
+    console.log(clickEvent.latLng.lng())
+  }
+
+  handleMarkerClick = () => {
+    console.log('IM MARKER RICK BITCH');
+  }
+
   render(){
     return(
       <React.Fragment>
@@ -196,7 +204,12 @@ export class TrailView extends PureComponent {
             disableDefaultUI={true}
             draggable={false}
             zoomControl={false}
+            onClick={this.handleMapClick}
             mapType={"satellite"}>
+            <Marker
+              position={{lat: this.state.trail.latitude, lng: this.state.trail.longitude}}
+              onClick={this.handleMarkerClick}
+              />
 
           </Map>
         </div>
