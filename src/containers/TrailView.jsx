@@ -101,6 +101,7 @@ export class TrailView extends PureComponent {
     form_upload.append("landmark", JSON.stringify(landmark))
     fetch(Landmarks, {
       method: "POST",
+      headers: {'Authorization': `Bearer ${this.props.jwt}`},
       body: form_upload
     }).then(res => res.json()).then(json => console.log(json))
   }
@@ -114,7 +115,8 @@ export class TrailView extends PureComponent {
       method: "POST",
       headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${this.props.jwt}`
         },
       body: JSON.stringify({
         comment: {
@@ -208,7 +210,7 @@ export class TrailView extends PureComponent {
 }
 
 const mapStateToProps = state => {
-  return {user_id: state.user.id}
+  return {user_id: state.user.id, jwt: state.jwt}
 }
 
 export default GoogleApiWrapper({

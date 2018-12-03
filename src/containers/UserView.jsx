@@ -12,8 +12,10 @@ const trailkey = "200389058-ca4e48fd0274137a0e4e2693a51308cc"
 export class UserView extends PureComponent {
 
   getRecommendations = () => {
-    let { lat,lng } = this.props.user.coords
-    fetch(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lng}&maxDistance=200&maxResults=20&key=${trailkey}`).then(res=>res.json()).then(recs => this.props.dispatch({type: "SET_RECOMMENDATIONS", recommendations: recs.trails}))
+    if(this.props.user.coords){
+      let { lat,lng } = this.props.user.coords
+      fetch(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lng}&maxDistance=200&maxResults=20&key=${trailkey}`).then(res=>res.json()).then(recs => this.props.dispatch({type: "SET_RECOMMENDATIONS", recommendations: recs.trails}))
+    }
   }
 
   componentDidMount(){

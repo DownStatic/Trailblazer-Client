@@ -9,6 +9,18 @@ class NavBar extends PureComponent {
     expanded: true
   }
 
+  componentDidMount(){
+    if(localStorage.token && !this.props.logged_in){
+      fetch(`http://localhost:3000/api/v1/profile`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+      })
+      .then(response => response.json())
+      .then(autheduser => {
+        this.props.dispatch({type: "AUTHED_PAGE_RELOAD", user: autheduser.user, jwt: localStorage.token})
+      })
+    }
+  }
 
   render() {
     return(

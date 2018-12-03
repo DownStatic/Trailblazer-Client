@@ -46,7 +46,8 @@ export class Signup extends PureComponent {
       method: "POST",
       body: form_upload
     }).then(res => res.json()).then(newuser => {
-      this.props.dispatch({type: "SUCCESSFUL_LOGIN", user: newuser})
+      window.localStorage.setItem('token', newuser.jwt)
+      this.props.dispatch({type: "SUCCESSFUL_LOGIN", user: newuser.user})
     })
   }
 

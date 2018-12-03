@@ -20,7 +20,7 @@ class Login extends PureComponent {
       <div className="login-form">
         <input type="text" name="username" placeholder="username" onChange={this.handleChange}></input><br></br>
         <input type="password" name="password" placeholder="password" onChange={this.handleChange}></input><br></br>
-        <button onClick={this.attemptLogin}>Login</button>
+        <button onClick={this.attemptJWTLogin}>Login</button>
       </div>
     )
   }
@@ -31,14 +31,20 @@ class Login extends PureComponent {
     })
   }
 
-  attemptLogin = () => {
-    let target = `http://localhost:3000/api/v1/users/`
-    fetch(target).then(res => res.json()).then(allusers => {
-      let autheduser = allusers.filter(u => u.name === this.state.username && u.password === this.state.password)
-      if(autheduser.length === 1){
-        autheduser = autheduser[0]
-        this.props.dispatch({type: "SUCCESSFUL_LOGIN", user: autheduser})
-      }
+  attemptJWTLogin = () => {
+    let target = "http://localhost:3000/api/v1/login"
+    fetch(target, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        user: {name: this.state.username, password: this.state.password}
+      })
+    }).then(res => res.json()).then(autheduser => {
+      window.localStorage.setItem('token', autheduser.jwt)
+      this.props.dispatch({type: "SUCCESSFUL_LOGIN", user: autheduser.user, jwt: autheduser.jwt})
     })
   }
 

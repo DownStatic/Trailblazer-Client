@@ -1,30 +1,32 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 import '../assets/scss/RecommendationBox.scss'
 
 export class RecommendationBox extends PureComponent {
 
   recCard = (rec) => {
     return(
-      <div className="movie_card" key={rec.id}>
-        <div className="info_section">
-          <div className="movie_header">
-            <h1>{rec.name}</h1>
+      <Link key={rec.id} to={`/Trail/${rec.id}`}>
+        <div className="movie_card">
+          <div className="info_section">
+            <div className="movie_header">
+              <h1>{rec.name}</h1>
+            </div>
+            <div className="movie_desc">
+              <p className="text">
+                {rec.summary}
+              </p>
+            </div>
           </div>
-          <div class="movie_desc">
-            <p class="text">
-              {rec.summary}
-            </p>
-          </div>
+          <div className="blur_back bright_back" style={{backgroundImage:`url(${rec.imgMedium})`}}></div>
         </div>
-        <div className="blur_back bright_back" style={{backgroundImage:`url(${rec.imgMedium})`}}></div>
-      </div>
+      </Link>
     )
   }
 
   render(){
     let { recommendations } = this.props
-    console.log(recommendations);
 
     return(
       <div className="recommendations-container">
