@@ -106,7 +106,16 @@ export class TrailView extends PureComponent {
       method: "POST",
       headers: {'Authorization': `Bearer ${this.props.jwt}`},
       body: form_upload
-    }).then(res => res.json()).then(json => console.log(json))
+    }).then(res => res.json()).then(newlandmark => {
+      this.setState(currentState => {
+        let newlandmarks = currentState.landmarks
+        newlandmarks.push(newlandmark)
+        return {
+          landmarks: newlandmarks,
+          display: "landmarks"
+        }
+      })
+    })
   }
 
   stageText = (event) => {
