@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import Flickity from 'react-flickity-component'
 import '../assets/scss/TrailView.scss'
 
 const mapkey = "AIzaSyA6JCWe4O5FRl56_Y5nKuoqC_U1nNXWVvs"
@@ -65,16 +66,26 @@ export class TrailView extends PureComponent {
   renderLandmarks = () => {
     if(this.state.landmarks.length){
       return(
-        this.state.landmarks.map(l => {
-          return (
-            <React.Fragment key={400+l.id}>
-              <img className="landmark-image" src={l.image_url} alt={l.id} />
-              <p>{l.details}</p>
-            </React.Fragment>
-          )
-        })
+        <Flickity
+          className={'carousel'}
+          elementType={'div'}
+          options={{initialIndex: 0}}
+          disableImagesLoaded={false}
+          reloadOnUpdate
+        >
+          {this.state.landmarks.map(l => {
+            return (
+              <img onChange={this.testFlickity} className="landmark-image" src={l.image_url} alt={l.id} key={l.id+850}/>
+              )
+          })}
+        </Flickity>
       )
     }
+  }
+
+  testFlickity = (event) => {
+    console.log(event);
+    console.log(event.target);
   }
 
   renderLandmarkForm = () => {
@@ -221,7 +232,7 @@ export class TrailView extends PureComponent {
             onClick={this.handleMapClick}
             mapType={"satellite"}>
             {this.state.landmarks.length ? this.state.landmarks.map(landmark => {
-              return <Marker position={landmark.coords} onClick={this.handleMarkerClick} icon={Dart} />
+              return <Marker position={landmark.coords} onClick={this.handleMarkerClick} icon={Dart} key={landmark.id+750} />
             }) : null}
             {this.state.protoLandmarkCoords ? <Marker position={this.state.protoLandmarkCoords} color="blue" animation={google.maps.Animation.DROP} icon={Dart}/>: null}
 
