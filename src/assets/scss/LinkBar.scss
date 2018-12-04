@@ -18,6 +18,18 @@
       color: aliceblue;
       text-shadow: 2px 2px 2px black;
     }
+    h2 {
+      text-decoration: underline;
+      color: brown;
+      font-size: 130%;
+      font-style: italic;
+      text-shadow: 2px 2px 2px black;
+      padding: none;
+      margin: none;
+      position: absolute;
+      top: 0%;
+      left: 1%;
+    }
 }
 
 .linkback {
@@ -33,6 +45,9 @@
 }
 
 .linkcontainer {
+  position: absolute;
+  width: 95%;
+  right: 0%;
   height: 40%;
   padding: 0.2%;
   display: flex;

@@ -7,6 +7,7 @@ const mapkey = "AIzaSyA6JCWe4O5FRl56_Y5nKuoqC_U1nNXWVvs"
 const trailkey = "200389058-ca4e48fd0274137a0e4e2693a51308cc"
 const Comments = "http://localhost:3000/api/v1/comments"
 const Landmarks = "http://localhost:3000/api/v1/landmarks"
+const Dart = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Bubble-Chartreuse-icon.png"
 
 export class TrailView extends PureComponent {
 
@@ -17,6 +18,7 @@ export class TrailView extends PureComponent {
     protoComment: "",
     protoLandmarkText: "",
     protoLandmarkURL: "",
+    protoLandmarkCoords: {},
     display: "default"
   }
 
@@ -76,13 +78,15 @@ export class TrailView extends PureComponent {
   }
 
   renderLandmarkForm = () => {
+    let {protoLandmarkURL, protoLandmarkCoords} = this.state
     return (
       <div className="landmark-form">
         <p>Landmark Form goes here.</p>
         <input name="protoLandmarkText" placeholder="new landmark description" type="text" className="comment-form" onChange={this.stageText}></input><br></br>
+        <p>Latitude:{protoLandmarkCoords.lat} || Longitude:{protoLandmarkCoords.lng}</p>
         <label>Landmark</label>
         <input onChange={this.landmarkUpload} name="landmark" id="landmark_file" type="file" accept="image/*"></input><br></br>
-        {this.state.protoLandmarkURL ? <img src={this.state.protoLandmarkURL} alt="questionable" className="proto-landmark" /> : null}
+        {protoLandmarkURL ? <img src={protoLandmarkURL} alt="questionable" className="proto-landmark" /> : null}
         <button className="landmark-add" onClick={this.addLandmark}>Add Landmark</button>
       </div>
     )
@@ -96,7 +100,7 @@ export class TrailView extends PureComponent {
     let landmark_image = document.getElementById("landmark_file").files[0]
     let form_upload = new FormData()
     form_upload.append("image", landmark_image)
-    let landmark = {details: this.state.protoLandmarkText, user_id: this.props.user_id, trail_id: this.props.match.params.id}
+    let landmark = {details: this.state.protoLandmarkText, user_id: this.props.user_id, trail_id: this.props.match.params.id, coords: this.state.protoLandmarkCoords}
     form_upload.append("landmark", JSON.stringify(landmark))
     fetch(Landmarks, {
       method: "POST",
@@ -184,8 +188,8 @@ export class TrailView extends PureComponent {
   }
 
   handleMapClick = (mapProps, map, clickEvent) => {
-    console.log(clickEvent.latLng.lat())
-    console.log(clickEvent.latLng.lng())
+    let protoCoords = {lat: clickEvent.latLng.lat(),lng: clickEvent.latLng.lng()}
+    this.setState({protoLandmarkCoords: protoCoords})
   }
 
   handleMarkerClick = () => {
@@ -193,6 +197,7 @@ export class TrailView extends PureComponent {
   }
 
   render(){
+    let {google} = this.props
     return(
       <React.Fragment>
         <div className="map-container">
@@ -206,10 +211,10 @@ export class TrailView extends PureComponent {
             zoomControl={false}
             onClick={this.handleMapClick}
             mapType={"satellite"}>
-            <Marker
-              position={{lat: this.state.trail.latitude, lng: this.state.trail.longitude}}
-              onClick={this.handleMarkerClick}
-              />
+            {this.state.landmarks.length ? this.state.landmarks.map(landmark => {
+              return <Marker position={landmark.coords} onClick={this.handleMarkerClick} icon={Dart} />
+            }) : null}
+            {this.state.protoLandmarkCoords ? <Marker position={this.state.protoLandmarkCoords} color="blue" animation={google.maps.Animation.DROP} icon={Dart}/>: null}
 
           </Map>
         </div>

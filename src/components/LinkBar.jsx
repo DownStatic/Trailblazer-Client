@@ -14,6 +14,7 @@ const LinkBar = (props) => {
         {props.loggedIn ? <Link to='/LoggedOut'>Log Out</Link> : <Link to='/Signup'>Sign up</Link>}
         <Link to='/About'>About</Link>
       </div>
+      <h2 className="trailblazer-text">TrailBlazer</h2>
     </div>
   )
 }
