@@ -34,13 +34,12 @@ export default class SearchView extends PureComponent {
   searchField = () => {
     return (
       <div className="search-form">
-        <label>Latitude</label><br></br>
-        <input name="latitude" type="number" onChange={this.updateCoordinates} placeholder="latitude"></input><br></br>
-        <label>Longitude</label><br></br>
-        <input name="longitude" type="number" onChange={this.updateCoordinates} placeholder="longitude"></input><br></br>
-        <label>Search Radius</label><br></br>
-        <input name="range" type="number" onChange={this.updateCoordinates} placeholder="range (miles)"></input><br></br>
-        <button onClick={this.searchTrails}>Search Trails</button>
+        <div className="inputs-container">
+          <input name="latitude" type="number" onChange={this.updateCoordinates} placeholder="latitude"></input><br></br>
+          <input name="longitude" type="number" onChange={this.updateCoordinates} placeholder="longitude"></input><br></br>
+          <input name="range" type="number" onChange={this.updateCoordinates} placeholder="search range (miles)"></input><br></br>
+          <button onClick={this.searchTrails}>Search Trails</button>
+        </div>
       </div>
     )
   }
@@ -70,16 +69,16 @@ export default class SearchView extends PureComponent {
               </div>
             )
           })}
-          <button onClick={this.switchDisplay}>Search Again</button>
         </div>
         <RecommendationBox />
+        <button className="search-again" onClick={this.switchDisplay}>Search Again</button>
       </React.Fragment>
     )
   }
 
   render(){
     return (
-      <div>
+      <div className="search-back">
         {this.state.searching ? this.searchField() : this.displayField()}
       </div>
     )

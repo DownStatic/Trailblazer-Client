@@ -61,9 +61,11 @@ export class TrailView extends PureComponent {
 
   renderCommentForm = () => {
     return (
-      <div>
-        <input name="protoComment" placeholder="new comment text" type="text" className="comment-form" onChange={this.stageText}></input>
-        <button className="comment-add" onClick={this.addComment}>Add Comment</button>
+      <div className="trails-form">
+        <div className="trails-inputs-container">
+          <input name="protoComment" placeholder="new comment text" type="text" className="comment-form" onChange={this.stageText}></input>
+          <button className="comment-add" onClick={this.addComment}>Add Comment</button>
+        </div>
       </div>
     )
   }
@@ -117,13 +119,15 @@ export class TrailView extends PureComponent {
   renderLandmarkForm = () => {
     let {protoLandmarkURL, protoLandmarkCoords} = this.state
     return (
-      <div className="landmark-form">
-        <p className="landmark-title-text">Click the map to specify a location, and upload an image before submitting.</p>
-        <input name="protoLandmarkText" placeholder="new landmark description" type="text" className="comment-form" onChange={this.stageText}></input><br></br>
-        <p>Latitude:{protoLandmarkCoords.lat} || Longitude:{protoLandmarkCoords.lng}</p>
-        <input onChange={this.landmarkUpload} name="landmark" id="landmark_file" type="file" accept="image/*"></input><br></br>
-        {protoLandmarkURL ? <img src={protoLandmarkURL} alt="questionable" className="proto-landmark" /> : null}
-        <button className="landmark-add" onClick={this.addLandmark}>Add Landmark</button>
+      <div className="trails-form">
+        <div className="trails-inputs-container">
+          <p className="landmark-title-text">Click the map to specify a location, and upload an image before submitting.</p>
+          <input name="protoLandmarkText" placeholder="new landmark description" type="text" className="comment-form" onChange={this.stageText}></input><br></br>
+          <p>Latitude:{protoLandmarkCoords.lat} || Longitude:{protoLandmarkCoords.lng}</p>
+          <input onChange={this.landmarkUpload} name="landmark" id="landmark_file" type="file" accept="image/*"></input><br></br>
+          {protoLandmarkURL ? <img src={protoLandmarkURL} alt="questionable" className="proto-landmark" /> : null}
+          <button className="landmark-add" onClick={this.addLandmark}>Add Landmark</button>
+        </div>
       </div>
     )
   }
@@ -212,8 +216,8 @@ export class TrailView extends PureComponent {
         <button onClick={this.defaultView}>Trail Info</button>
         <button onClick={this.showComments}>View Comments</button>
         <button onClick={this.showLandmarks}>View Landmarks</button>
-        <button onClick={this.commentForm}>Add a Comment</button>
-        <button onClick={this.landmarkForm}>Add a Landmark</button>
+        {this.props.logged_in ? <button onClick={this.commentForm}>Add a Comment</button> : null}
+        {this.props.logged_in ? <button onClick={this.landmarkForm}>Add a Landmark</button> : null}
       </div>
     )
   }
@@ -234,8 +238,10 @@ export class TrailView extends PureComponent {
   }
 
   handleMapClick = (mapProps, map, clickEvent) => {
-    let protoCoords = {lat: clickEvent.latLng.lat(),lng: clickEvent.latLng.lng()}
-    this.setState({protoLandmarkCoords: protoCoords, display: "landmark-form"})
+    if(this.props.logged_in){
+      let protoCoords = {lat: clickEvent.latLng.lat(),lng: clickEvent.latLng.lng()}
+      this.setState({protoLandmarkCoords: protoCoords, display: "landmark-form"})
+    }
   }
 
   handleMarkerClick = (event) => {
@@ -275,7 +281,7 @@ export class TrailView extends PureComponent {
 }
 
 const mapStateToProps = state => {
-  return {user_id: state.user.id, jwt: state.jwt}
+  return {user_id: state.user.id, jwt: state.jwt, logged_in: state.logged_in}
 }
 
 export default GoogleApiWrapper({
