@@ -8,6 +8,9 @@ const trailkey = "200389058-ca4e48fd0274137a0e4e2693a51308cc"
 const Comments = "http://localhost:3000/api/v1/comments"
 const Landmarks = "http://localhost:3000/api/v1/landmarks"
 const Dart = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Bubble-Chartreuse-icon.png"
+const BlueDart = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Azure-icon.png"
+const LeftArrow = "https://i.imgur.com/mOrGXpY.png"
+const RightArrow = "https://i.imgur.com/VJu0oPx.png"
 
 export class TrailView extends PureComponent {
 
@@ -15,11 +18,13 @@ export class TrailView extends PureComponent {
     trail: {},
     comments: [],
     landmarks: [],
+    selectedLandmark: {},
     protoComment: "",
     protoLandmarkText: "",
     protoLandmarkURL: "",
     protoLandmarkCoords: {},
-    display: "default"
+    display: "default",
+    fading:"fade-in"
   }
 
   componentWillMount(){
@@ -62,17 +67,48 @@ export class TrailView extends PureComponent {
     )
   }
 
+  cycleLandmark = (event) => {
+    let {landmarks, selectedLandmark} = this.state
+    let ref = landmarks.indexOf(selectedLandmark)
+    if(event.target.alt === "prev" || event.target.className.includes("prev")){
+      if(ref===0){
+        this.setState({fading: "fade-out"}, () => {
+          setTimeout(this.setState({fading: "fade-in", selectedLandmark: landmarks[landmarks.length-1]}), 300)})
+      }
+      else{
+        this.setState({fading: "fade-out"}, () => {
+          setTimeout(this.setState({fading: "fade-in", selectedLandmark: landmarks[ref-1]}), 300)})
+      }
+    }
+    else if (event.target.alt === "next" || event.target.className.includes("next")){
+      if(ref===landmarks.length-1){
+        this.setState({fading: "fade-out"}, () => {
+          setTimeout(this.setState({fading: "fade-in", selectedLandmark: landmarks[0]}), 300)})
+      }
+      else{
+        this.setState({fading: "fade-out"}, () => {
+          setTimeout(this.setState({fading: "fade-in", selectedLandmark: landmarks[ref+1]}), 300)})
+      }
+    }
+  }
+
+
+
   renderLandmarks = () => {
-    if(this.state.landmarks.length){
+    if(this.state.selectedLandmark){
       return(
-        this.state.landmarks.map(l => {
-          return (
-            <React.Fragment key={400+l.id}>
-              <img className="landmark-image" src={l.image_url} alt={l.id} />
-              <p>{l.details}</p>
-            </React.Fragment>
-          )
-        })
+        <React.Fragment key={400+this.state.selectedLandmark.id}>
+          <div className="landmark-nav prev" onClick={this.cycleLandmark}>
+            <img className="arrows" src={LeftArrow} alt="prev" />
+          </div>
+          <div className="landmark-nav next" onClick={this.cycleLandmark}>
+            <img className="arrows" src={RightArrow} alt="next" />
+          </div>
+          <div className="movie_card">
+            <img className={`blur_back bright_back landmark-image ${this.state.fading}`} src={this.state.selectedLandmark.image_url}></img>
+          </div>
+          <center><p>{this.state.selectedLandmark.details}</p></center>
+        </React.Fragment>
       )
     }
   }
@@ -154,7 +190,7 @@ export class TrailView extends PureComponent {
   }
 
   showLandmarks = () => {
-    this.setState({display: "landmarks"})
+    this.setState({display: "landmarks", selectedLandmark: this.state.landmarks[0]})
   }
 
   commentForm = () => {
@@ -201,8 +237,9 @@ export class TrailView extends PureComponent {
     this.setState({protoLandmarkCoords: protoCoords})
   }
 
-  handleMarkerClick = () => {
-    console.log('IM MARKER RICK BITCH');
+  handleMarkerClick = (event) => {
+    let clickedLandmark = this.state.landmarks.filter(l => l.coords === event.position)[0]
+    this.setState({selectedLandmark: clickedLandmark, display: "landmarks"})
   }
 
   render(){
@@ -221,16 +258,16 @@ export class TrailView extends PureComponent {
             onClick={this.handleMapClick}
             mapType={"satellite"}>
             {this.state.landmarks.length ? this.state.landmarks.map(landmark => {
-              return <Marker position={landmark.coords} onClick={this.handleMarkerClick} icon={Dart} />
+              return <Marker position={landmark.coords} onClick={this.handleMarkerClick} icon={landmark.id === this.state.selectedLandmark.id ? BlueDart : Dart} key={landmark.id+950} />
             }) : null}
-            {this.state.protoLandmarkCoords ? <Marker position={this.state.protoLandmarkCoords} color="blue" animation={google.maps.Animation.DROP} icon={Dart}/>: null}
+            {this.state.protoLandmarkCoords.lat ? <Marker position={this.state.protoLandmarkCoords} animation={google.maps.Animation.DROP} icon={Dart}/>: null}
 
           </Map>
         </div>
         <div className="display-area">
           {this.renderDisplay()}
-          {this.displayNav()}
         </div>
+        {this.displayNav()}
       </React.Fragment>
     )
   }
