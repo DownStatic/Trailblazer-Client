@@ -30,6 +30,9 @@ export class RecommendationBox extends PureComponent {
 
     return(
       <div className="recommendations-container">
+        <div className="title-container">
+          <p className="recommendation-title">TrailBlazer Recommendations</p>
+        </div>
         {recommendations ? recommendations.map(rec => this.recCard(rec)) : null}
       </div>
     )

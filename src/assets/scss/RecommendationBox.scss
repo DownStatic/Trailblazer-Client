@@ -19,6 +19,25 @@
   margin: 0;
 }
 
+.title-container {
+  position: fixed;
+  top: 12%;
+  left: -webkit-calc(47% + 300px);
+  left:    -moz-calc(47% + 300px);
+  left:         calc(47% + 300px);
+  display: flex;
+  height: auto;
+  width: 34%;
+  justify-content: center;
+  z-index:5;
+  background: linear-gradient(gray, black);
+  color: white;
+  border: 2px solid black;
+  font-family: 'Montserrat', helvetica, arial, sans-serif;
+  font-size: 250%;
+  text-shadow: 1px 1px 1px honeydew;
+}
+
 html, body{
   margin: 0;
   font-family: 'Montserrat', helvetica, arial, sans-serif;
