@@ -49,9 +49,12 @@ export class TrailView extends PureComponent {
   renderComments = () => {
     if(this.state.comments.length){
       return(
-        this.state.comments.map(c => {
-          return <p key={200+c.id}>{c.text}</p>
-        })
+        <div className="comments-container">
+          <p className="landmark-title-text">Trail Comments</p>
+          {this.state.comments.map(c => {
+            return <p className="individual-comment" key={200+c.id}>{c.text}<br></br>-{c.user}</p>
+          })}
+        </div>
       )
     }
     else{
@@ -110,9 +113,12 @@ export class TrailView extends PureComponent {
           <div className="movie_card">
             <img className={`blur_back bright_back landmark-image ${this.state.fading}`} src={this.state.selectedLandmark.image_url}></img>
           </div>
-          <center><p>{this.state.selectedLandmark.details}</p></center>
+          <center><p className="landmark-summary">{this.state.selectedLandmark.details}<br></br>Posted by:{this.state.selectedLandmark.user}</p></center>
         </React.Fragment>
       )
+    }
+    else{
+      return <p>No landmarks for this trail!</p>
     }
   }
 
@@ -121,9 +127,9 @@ export class TrailView extends PureComponent {
     return (
       <div className="trails-form">
         <div className="trails-inputs-container">
-          <p className="landmark-title-text">Click the map to specify a location, and upload an image before submitting.</p>
+          <p className="landmark-title-text">-Click the map to specify a location, and upload an image before submitting-</p>
           <input name="protoLandmarkText" placeholder="new landmark description" type="text" className="comment-form" onChange={this.stageText}></input><br></br>
-          <p>Latitude:{protoLandmarkCoords.lat} || Longitude:{protoLandmarkCoords.lng}</p>
+          <p className="form-latlon">Latitude:{protoLandmarkCoords.lat} || Longitude:{protoLandmarkCoords.lng}</p>
           <input onChange={this.landmarkUpload} name="landmark" id="landmark_file" type="file" accept="image/*"></input><br></br>
           {protoLandmarkURL ? <img src={protoLandmarkURL} alt="questionable" className="proto-landmark" /> : null}
           <button className="landmark-add" onClick={this.addLandmark}>Add Landmark</button>
@@ -138,6 +144,10 @@ export class TrailView extends PureComponent {
 
   addLandmark = () => {
     let landmark_image = document.getElementById("landmark_file").files[0]
+    if(!landmark_image || !this.state.protoLandmarkCoords.lat){
+      alert("Coordinates and an image are required to create a new landmark")
+      return null
+    }
     let form_upload = new FormData()
     form_upload.append("image", landmark_image)
     let landmark = {details: this.state.protoLandmarkText, user_id: this.props.user_id, trail_id: this.props.match.params.id, coords: this.state.protoLandmarkCoords}
@@ -222,6 +232,40 @@ export class TrailView extends PureComponent {
     )
   }
 
+  trailInfo = () => {
+    let {trail} = this.state
+    return(
+      <div>
+        <p className="trail-title">{trail.name}</p>
+        <p className="trail-summary">
+          {trail.summary}<br></br><br></br>
+          Difficulty: {this.convertDifficulty(trail.difficulty)}/5 || Length: {trail.length} miles<br></br>
+          Current Conditions: {trail.conditionStatus} (updated {trail.conditionDate})
+        </p>
+        <div className="movie_card">
+          <img className={`blur_back bright_back landmark-image`} src={trail.imgMedium}></img>
+        </div>
+      </div>
+    )
+  }
+
+  convertDifficulty = (difficulty) => {
+    switch(difficulty){
+      case "green":
+        return 1
+      case "greenBlue":
+        return 2
+      case "blue":
+        return 3
+      case "blueBlack":
+        return 4
+      case "black":
+        return 5
+      default:
+        return "unknown"
+    }
+  }
+
   renderDisplay = () => {
     switch(this.state.display){
       case "comments":
@@ -233,7 +277,7 @@ export class TrailView extends PureComponent {
       case "landmark-form":
         return this.renderLandmarkForm()
       default:
-        return <p>Default display. Select a comment or landmark action below</p>
+        return this.trailInfo()
     }
   }
 

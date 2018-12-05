@@ -12,10 +12,54 @@
   border-style: solid;
 }
 
+.comments-container {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  width: 96%;
+  height: auto;
+  box-shadow: 0 0 2em honeydew;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-grow: 0.1;
+  text-shadow: 1px 1px 1px silver;
+}
+
+.individual-comment {
+  margin: 1%;
+  box-shadow: 1px 1px 3px black;
+  align-self: center;
+  background: linen;
+}
+
+.landmark-summary {
+  margin: 1%;
+  align-self: center;
+  text-shadow: 1px 1px 1px honeydew;
+  font-size: 200%;
+  width: 76%;
+}
+
 .landmark-title-text {
-  align-content: center;
   padding-bottom: 5%;
   font-size: 125%;
+  text-decoration: double underline;
+  text-align: center;
+}
+
+.trail-title {
+  text-align: center;
+  padding: 2%;
+  font-size: 200%;
+  text-decoration: underline;
+  text-shadow: 2px 2px 2px gray;
+}
+
+.trail-summary {
+  text-shadow: 1px 1px 1px gray;
+  font-size: 125%;
+  text-align: center;
 }
 
 .display-area {
@@ -36,8 +80,32 @@
   width: 100%;
   bottom: 2%;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-shrink: auto;
   justify-content: space-around;
+  button{
+    color: black;
+    background: none;
+    border-radius: 0;
+    padding: 1.2em 5em;
+    letter-spacing: 0.35em;
+    font-size: 0.85em;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+    margin: 1em;
+    font-family: "Montserrat";
+    font-weight: bold;
+    box-shadow: inset 0 0 1em rgba(251,81,81,0.4), 0 0 1em rgba(251,81,81,0.4);
+    border: #fb5454 solid 2px;
+  }
+
+  button:hover {
+    background-color: #fb5454;
+    box-shadow: inset 0 0 0 rgba(251,81,81,0.4), 0 0 1.5em rgba(251,81,81,0.6);
+  }
+}
+
+.form-latlon {
+  align-self: center;
 }
 
 .proto-landmark {
@@ -89,28 +157,6 @@
 .fade-in {
   opacity: 1;
   transition: .3s;
-}
-
-.display-nav{
-	button{
-    color: black;
-    background: none;
-    border-radius: 0;
-    padding: 1.2em 5em;
-    letter-spacing: 0.35em;
-    font-size: 0.85em;
-    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
-    margin: 1em;
-    font-family: "Montserrat";
-    font-weight: bold;
-    box-shadow: inset 0 0 1em rgba(251,81,81,0.4), 0 0 1em rgba(251,81,81,0.4);
-		border: #fb5454 solid 2px;
-  }
-
-	button:hover {
-		background-color: #fb5454;
-		box-shadow: inset 0 0 0 rgba(251,81,81,0.4), 0 0 1.5em rgba(251,81,81,0.6);
-	}
 }
 
 .comment-form{
