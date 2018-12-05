@@ -12,6 +12,11 @@
   border-style: solid;
 }
 
+.landmark-title-text {
+  align-content: center;
+  padding-bottom: 5%;
+}
+
 .display-area {
   position: fixed;
   top: 8%;
@@ -84,3 +89,89 @@
   opacity: 1;
   transition: .3s;
 }
+
+.display-nav{
+	button{
+    color: black;
+    background: none;
+    border-radius: 0;
+    padding: 1.2em 5em;
+    letter-spacing: 0.35em;
+    font-size: 0.85em;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+    margin: 1em;
+    font-family: "Montserrat";
+    font-weight: bold;
+    box-shadow: inset 0 0 1em rgba(251,81,81,0.4), 0 0 1em rgba(251,81,81,0.4);
+		border: #fb5454 solid 2px;
+  }
+
+	button:hover {
+		background-color: #fb5454;
+		box-shadow: inset 0 0 0 rgba(251,81,81,0.4), 0 0 1.5em rgba(251,81,81,0.6);
+	}
+}
+
+.comment-form{
+	button{
+    color: black;
+    background: none;
+    border-radius: 0;
+    padding: 1.2em 5em;
+    letter-spacing: 0.35em;
+    font-size: 0.85em;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+    margin: 1em;
+    font-family: "Montserrat";
+    font-weight: bold;
+    box-shadow: inset 0 0 1em rgba(251,81,81,0.4), 0 0 1em rgba(251,81,81,0.4);
+		border: #fb5454 solid 2px;
+  }
+
+	button:hover {
+		background-color: #fb5454;
+		box-shadow: inset 0 0 0 rgba(251,81,81,0.4), 0 0 1.5em rgba(251,81,81,0.6);
+	}
+}
+
+.landmark-form{
+	button{
+    color: black;
+    background: none;
+    border-radius: 0;
+    padding: 1.2em 5em;
+    letter-spacing: 0.35em;
+    font-size: 0.85em;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+    margin: 1em;
+    font-family: "Montserrat";
+    font-weight: bold;
+    box-shadow: inset 0 0 1em rgba(251,81,81,0.4), 0 0 1em rgba(251,81,81,0.4);
+		border: #fb5454 solid 2px;
+  }
+
+	button:hover {
+		background-color: #fb5454;
+		box-shadow: inset 0 0 0 rgba(251,81,81,0.4), 0 0 1.5em rgba(251,81,81,0.6);
+	}
+}
+//
+// #landmark_file{
+//   color: black;
+//   background: none;
+//   border-radius: 0;
+//   padding: 1.2em 5em;
+//   letter-spacing: 0.35em;
+//   font-size: 0.85em;
+//   transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+//   margin: 1em;
+//   font-family: "Montserrat";
+//   font-weight: bold;
+//   box-shadow: inset 0 0 1em rgba(251,81,81,0.4), 0 0 1em rgba(251,81,81,0.4);
+//   border: #fb5454 solid 2px;
+// }
+//
+// #landmark_file:hover {
+//   background-color: #fb5454;
+//   box-shadow: inset 0 0 0 rgba(251,81,81,0.4), 0 0 1.5em rgba(251,81,81,0.6);
+// }

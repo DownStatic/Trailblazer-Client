@@ -9,6 +9,7 @@ const Comments = "http://localhost:3000/api/v1/comments"
 const Landmarks = "http://localhost:3000/api/v1/landmarks"
 const Dart = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Bubble-Chartreuse-icon.png"
 const BlueDart = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Azure-icon.png"
+const Pin = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Inside-Chartreuse-icon.png"
 const LeftArrow = "https://i.imgur.com/mOrGXpY.png"
 const RightArrow = "https://i.imgur.com/VJu0oPx.png"
 
@@ -117,10 +118,9 @@ export class TrailView extends PureComponent {
     let {protoLandmarkURL, protoLandmarkCoords} = this.state
     return (
       <div className="landmark-form">
-        <p>Landmark Form goes here.</p>
+        <p className="landmark-title-text">Click the map to specify a location, and upload an image before submitting.</p>
         <input name="protoLandmarkText" placeholder="new landmark description" type="text" className="comment-form" onChange={this.stageText}></input><br></br>
         <p>Latitude:{protoLandmarkCoords.lat} || Longitude:{protoLandmarkCoords.lng}</p>
-        <label>Landmark</label>
         <input onChange={this.landmarkUpload} name="landmark" id="landmark_file" type="file" accept="image/*"></input><br></br>
         {protoLandmarkURL ? <img src={protoLandmarkURL} alt="questionable" className="proto-landmark" /> : null}
         <button className="landmark-add" onClick={this.addLandmark}>Add Landmark</button>
@@ -148,7 +148,8 @@ export class TrailView extends PureComponent {
         newlandmarks.push(newlandmark)
         return {
           landmarks: newlandmarks,
-          display: "landmarks"
+          display: "landmarks",
+          selectedLandmark: newlandmark
         }
       })
     })
@@ -260,7 +261,7 @@ export class TrailView extends PureComponent {
             {this.state.landmarks.length ? this.state.landmarks.map(landmark => {
               return <Marker position={landmark.coords} onClick={this.handleMarkerClick} icon={landmark.id === this.state.selectedLandmark.id ? BlueDart : Dart} key={landmark.id+950} />
             }) : null}
-            {this.state.protoLandmarkCoords.lat ? <Marker position={this.state.protoLandmarkCoords} animation={google.maps.Animation.DROP} icon={Dart}/>: null}
+            {this.state.protoLandmarkCoords.lat ? <Marker position={this.state.protoLandmarkCoords} animation={google.maps.Animation.DROP} icon={Pin}/>: null}
 
           </Map>
         </div>

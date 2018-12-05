@@ -17,10 +17,12 @@ class Login extends PureComponent {
     }
 
     return(
-      <div className="login-form">
-        <input type="text" name="username" placeholder="username" onChange={this.handleChange}></input><br></br>
-        <input type="password" name="password" placeholder="password" onChange={this.handleChange}></input><br></br>
-        <button onClick={this.attemptJWTLogin}>Login</button>
+      <div className="login-page">
+        <div className="login-form">
+          <input type="text" name="username" placeholder="username" onChange={this.handleChange}></input><br></br>
+          <input type="password" name="password" placeholder="password" onChange={this.handleChange}></input><br></br>
+          <button className="fuller-button login-button" onClick={this.attemptJWTLogin}>Login</button>
+        </div>
       </div>
     )
   }
