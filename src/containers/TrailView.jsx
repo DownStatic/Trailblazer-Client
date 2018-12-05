@@ -234,7 +234,7 @@ export class TrailView extends PureComponent {
 
   handleMapClick = (mapProps, map, clickEvent) => {
     let protoCoords = {lat: clickEvent.latLng.lat(),lng: clickEvent.latLng.lng()}
-    this.setState({protoLandmarkCoords: protoCoords})
+    this.setState({protoLandmarkCoords: protoCoords, display: "landmark-form"})
   }
 
   handleMarkerClick = (event) => {

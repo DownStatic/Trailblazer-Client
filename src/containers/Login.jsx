@@ -43,8 +43,13 @@ class Login extends PureComponent {
         user: {name: this.state.username, password: this.state.password}
       })
     }).then(res => res.json()).then(autheduser => {
-      window.localStorage.setItem('token', autheduser.jwt)
-      this.props.dispatch({type: "SUCCESSFUL_LOGIN", user: autheduser.user, jwt: autheduser.jwt})
+      if (autheduser.jwt){
+        window.localStorage.setItem('token', autheduser.jwt)
+        this.props.dispatch({type: "SUCCESSFUL_LOGIN", user: autheduser.user, jwt: autheduser.jwt})
+      }
+      else {
+        alert(`${autheduser.message}`)
+      }
     })
   }
 
