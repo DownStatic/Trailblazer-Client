@@ -22,6 +22,7 @@ ReactDOM.render(
     <Router>
       <React.Fragment>
         <Route path='/' component={NavBar} />
+        <Route exact path='/' component={About} />
         <Route exact path='/Login' component={Login} />
         <Route exact path='/Signup' component={Signup} />
         <Route exact path='/Trail/:id' component={TrailView} />

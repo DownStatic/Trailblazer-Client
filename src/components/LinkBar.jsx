@@ -10,7 +10,7 @@ const LinkBar = (props) => {
       <div className="linkcontainer">
         {props.loggedIn ? null : <Link to='/Signup'>Sign Up</Link>}
         <Link to='/Search'>Search</Link>
-        <Link to={props.loggedIn ? '/Profile' : '/Login'}>Profile</Link>
+        {props.loggedIn ? <Link to='/Login'>Profile</Link> : null}
         {props.loggedIn ? <Link to='/LoggedOut'>Log Out</Link> : <Link to='/Login'>Log In</Link>}
         <Link to='/About'>About</Link>
       </div>

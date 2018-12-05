@@ -36,6 +36,10 @@ export class Signup extends PureComponent {
 
   handleSubmit = (coords) => {
     let avatar = document.getElementById("avatar_file").files[0]
+    if(!avatar){
+      alert("You must upload an avatar image")
+      return null
+    }
     let form_upload = new FormData()
     form_upload.append("avatar", avatar)
     let not_avatar = {...this.state}
