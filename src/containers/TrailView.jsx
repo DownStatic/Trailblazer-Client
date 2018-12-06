@@ -163,7 +163,10 @@ export class TrailView extends PureComponent {
         return {
           landmarks: newlandmarks,
           display: "landmarks",
-          selectedLandmark: newlandmark
+          selectedLandmark: newlandmark,
+          protoLandmarkURL: "",
+          protoLandmarkText: "",
+          protoLandmarkCoords: {}
         }
       })
     })
