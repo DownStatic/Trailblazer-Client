@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import '../assets/scss/Signup.scss'
 
 const geokey = "AIzaSyA6JCWe4O5FRl56_Y5nKuoqC_U1nNXWVvs"
+const background = "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/E5A-UKCHl/wet-bamboo-tree-with-moving-leaves-and-branches-during-rain-season-in-thailand_428rmf-8l__F0000.png"
 
 export class Signup extends PureComponent {
 
@@ -57,11 +58,16 @@ export class Signup extends PureComponent {
 
   proficiencySelect = () => {
     return(
-      <select onChange={this.handleChange} name="proficiency">
-        <option value="beginner">beginner</option>
-        <option value="intermediate">intermediate</option>
-        <option value="advanced">advanced</option>
-      </select>
+        <div className="select">
+          <select className="select-text" onChange={this.handleChange} name="proficiency">
+            <option value="beginner">beginner</option>
+            <option value="intermediate">intermediate</option>
+            <option value="advanced">advanced</option>
+            <span class="select-highlight"></span>
+  					<span class="select-bar"></span>
+  					<label class="select-label">Select Your Proficiency</label>
+          </select>
+        </div>
     )
   }
 
@@ -87,29 +93,32 @@ export class Signup extends PureComponent {
     return(
 
       <div className="user_creation">
+        <img src={background} className="signup-background" />
         <div className="avatar_portion">
           <label>Avatar</label>
           <input onChange={this.avatarUpload} name="avatar" id="avatar_file" type="file" accept="image/*"></input><br></br>
           <img src={this.state.avatar ? this.state.avatar : "https://i.imgur.com/B4Unr42.png"} alt="questionable" />
         </div>
         <div className="user_details">
-          <label>Username</label><br></br>
-          <input onChange={this.handleChange} name="name" type="text" placeholder="your username"></input><br></br>
-          <label>Password</label><br></br>
-          <input onChange={this.handleChange} name="password" type="password" placeholder="your password"></input><br></br>
-          <label>Age</label><br></br>
-          <input onChange={this.handleChange} name="age" type="number"></input><br></br>
-          <label>Select Your Proficiency</label><br></br>
-          {this.proficiencySelect()}<br></br>
-          <label>Street Address</label><br></br>
-          <input onChange={this.handleAddress} name="street_address" type="text"></input><br></br>
-          <label>City</label><br></br>
-          <input onChange={this.handleAddress} name="city" type="text"></input><br></br>
-          <label>State</label><br></br>
-          <input onChange={this.handleAddress} name="state" type="text"></input><br></br>
-          <label>Zip Code</label><br></br>
-          <input onChange={this.handleAddress} name="zip_code" type="number"></input><br></br>
-          <button onClick={this.locate}>Submit</button><br></br>
+          <div className="form-container">
+            <label>Username</label><br></br>
+            <input onChange={this.handleChange} name="name" type="text" placeholder="your username"></input><br></br>
+            <label>Password</label><br></br>
+            <input onChange={this.handleChange} name="password" type="password" placeholder="your password"></input><br></br>
+            <label>Age</label><br></br>
+            <input onChange={this.handleChange} name="age" type="number"></input><br></br>
+            <label>Select Your Proficiency</label><br></br>
+            {this.proficiencySelect()}<br></br>
+            <label>Street Address</label><br></br>
+            <input onChange={this.handleAddress} name="street_address" type="text"></input><br></br>
+            <label>City</label><br></br>
+            <input onChange={this.handleAddress} name="city" type="text"></input><br></br>
+            <label>State</label><br></br>
+            <input onChange={this.handleAddress} name="state" type="text"></input><br></br>
+            <label>Zip Code</label><br></br>
+            <input onChange={this.handleAddress} name="zip_code" type="number"></input><br></br>
+            <button onClick={this.locate}>Submit</button><br></br>
+          </div>
         </div>
       </div>
     )
