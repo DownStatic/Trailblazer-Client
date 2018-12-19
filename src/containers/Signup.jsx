@@ -6,6 +6,7 @@ import '../assets/scss/Signup.scss'
 
 const geokey = "AIzaSyA6JCWe4O5FRl56_Y5nKuoqC_U1nNXWVvs"
 const background = "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/E5A-UKCHl/wet-bamboo-tree-with-moving-leaves-and-branches-during-rain-season-in-thailand_428rmf-8l__F0000.png"
+const usersPath = "https://trailblazer-rails.herokuapp.com/api/v1/users"
 
 export class Signup extends PureComponent {
 
@@ -47,7 +48,7 @@ export class Signup extends PureComponent {
     delete not_avatar["avatar"]
     form_upload.append("user", JSON.stringify(not_avatar))
     form_upload.append("coords", JSON.stringify(coords))
-    fetch('http://localhost:3000/api/v1/users', {
+    fetch(usersPath, {
       method: "POST",
       body: form_upload
     }).then(res => res.json()).then(newuser => {

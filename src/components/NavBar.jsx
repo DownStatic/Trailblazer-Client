@@ -4,6 +4,7 @@ import '../assets/scss/NavBar.scss'
 import LinkBar from './LinkBar'
 
 const trailkey = "200389058-ca4e48fd0274137a0e4e2693a51308cc"
+const profiles = `https://trailblazer-rails.herokuapp.com/api/v1/profile`
 
 class NavBar extends PureComponent {
 
@@ -20,7 +21,7 @@ class NavBar extends PureComponent {
 
   componentDidMount(){
     if(localStorage.token && !this.props.logged_in){
-      fetch(`http://localhost:3000/api/v1/profile`, {
+      fetch(profiles, {
         method: 'GET',
         headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
       })

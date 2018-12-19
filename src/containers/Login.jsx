@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import '../assets/scss/Login.scss'
 
+const loginPath = "https://trailblazer-rails.herokuapp.com/api/v1/login"
+
 class Login extends PureComponent {
 
   state = {
@@ -34,8 +36,7 @@ class Login extends PureComponent {
   }
 
   attemptJWTLogin = () => {
-    let target = "http://localhost:3000/api/v1/login"
-    fetch(target, {
+    fetch(login, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',

@@ -5,8 +5,8 @@ import '../assets/scss/TrailView.scss'
 
 const mapkey = "AIzaSyA6JCWe4O5FRl56_Y5nKuoqC_U1nNXWVvs"
 const trailkey = "200389058-ca4e48fd0274137a0e4e2693a51308cc"
-const Comments = "http://localhost:3000/api/v1/comments"
-const Landmarks = "http://localhost:3000/api/v1/landmarks"
+const Comments = "https://trailblazer-rails.herokuapp.com/api/v1/comments"
+const Landmarks = "https://trailblazer-rails.herokuapp.comapi/v1/landmarks"
 const Dart = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Bubble-Chartreuse-icon.png"
 const BlueDart = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Azure-icon.png"
 const Pin = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Inside-Chartreuse-icon.png"
@@ -243,7 +243,10 @@ export class TrailView extends PureComponent {
         <p className="trail-summary">
           {trail.summary}<br></br><br></br>
           Difficulty: {this.convertDifficulty(trail.difficulty)}/5 || Length: {trail.length} miles<br></br>
-          Current Conditions: {trail.conditionStatus} (updated {trail.conditionDate})
+          Current Conditions: {trail.conditionStatus} (updated {trail.conditionDate})<br></br>
+          Latitude:{trail.latitude ? trail.latitude :
+          "Loading..."}||Longitude:{trail.longitude ? trail.longitude :
+          "Loading..."}
         </p>
         <div className="movie_card">
           <img className={`blur_back bright_back landmark-image`} src={trail.imgMedium}></img>

@@ -58,8 +58,10 @@ textarea {
   box-shadow: 2px 1px 2px black;
   background: honeydew;
   img {
-    max-width: 100%;
+    max-width: 99%;
     height: auto;
+    max-height: 60%;
+    margin-left: 1%;
   }
   input {
     margin-right: 0px;
