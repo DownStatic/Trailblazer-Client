@@ -64,9 +64,6 @@ export class Signup extends PureComponent {
             <option value="beginner">beginner</option>
             <option value="intermediate">intermediate</option>
             <option value="advanced">advanced</option>
-            <span class="select-highlight"></span>
-  					<span class="select-bar"></span>
-  					<label class="select-label">Select Your Proficiency</label>
           </select>
         </div>
     )

@@ -6,7 +6,7 @@ import '../assets/scss/TrailView.scss'
 const mapkey = "AIzaSyA6JCWe4O5FRl56_Y5nKuoqC_U1nNXWVvs"
 const trailkey = "200389058-ca4e48fd0274137a0e4e2693a51308cc"
 const Comments = "https://trailblazer-rails.herokuapp.com/api/v1/comments"
-const Landmarks = "https://trailblazer-rails.herokuapp.comapi/v1/landmarks"
+const Landmarks = "https://trailblazer-rails.herokuapp.com/api/v1/landmarks"
 const Dart = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Bubble-Chartreuse-icon.png"
 const BlueDart = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Outside-Azure-icon.png"
 const Pin = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Marker-Inside-Chartreuse-icon.png"

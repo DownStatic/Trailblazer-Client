@@ -36,7 +36,7 @@ class Login extends PureComponent {
   }
 
   attemptJWTLogin = () => {
-    fetch(login, {
+    fetch(loginPath, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
