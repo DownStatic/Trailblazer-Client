@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import '../assets/scss/Signup.scss'
 
-const geokey = "ENV['GMAPS']"
+const geokey = ENV['GMAPS']
 const background = "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/E5A-UKCHl/wet-bamboo-tree-with-moving-leaves-and-branches-during-rain-season-in-thailand_428rmf-8l__F0000.png"
 const usersPath = "https://trailblazer-rails.herokuapp.com/api/v1/users"
 

@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import '../assets/scss/TrailView.scss'
 
-const mapkey = "ENV['GMAPS']"
-const trailkey = "ENV['TRAILS']"
+const mapkey = ENV['GMAPS']
+const trailkey = ENV['TRAILS']
 const Comments = "https://trailblazer-rails.herokuapp.com/api/v1/comments"
 const Landmarks = "https://trailblazer-rails.herokuapp.com/api/v1/landmarks"
 const Dart = "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/32/Map-Marker-Bubble-Chartreuse-icon.png"
