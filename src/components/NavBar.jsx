@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import '../assets/scss/NavBar.scss'
 import LinkBar from './LinkBar'
 
-const trailkey = "200389058-ca4e48fd0274137a0e4e2693a51308cc"
+const trailkey = "ENV['TRAILS']"
 const profiles = `https://trailblazer-rails.herokuapp.com/api/v1/profile`
 
 class NavBar extends PureComponent {

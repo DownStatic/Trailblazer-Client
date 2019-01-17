@@ -3,7 +3,7 @@ import '../assets/scss/SearchView.scss'
 import { Link } from 'react-router-dom'
 import RecommendationBox from '../components/RecommendationBox'
 
-const trailKey = "200389058-ca4e48fd0274137a0e4e2693a51308cc"
+const trailKey = "ENV['TRAILS']"
 
 export default class SearchView extends PureComponent {
 
